@@ -36,4 +36,24 @@ describe("pokemon tests", () => {
             expect(pokemon.move).toEqual("tackle");
         });
     });
+    describe("pokemon.takeDamage", () => {
+        test("takes a number and reduces hit points", () => {
+            const name = "Meowth";
+            const hitPoints = 300;
+            const attackDamage = 20;
+            const damageTaken = 50;
+            const pokemon = new Pokemon(name, hitPoints, attackDamage);
+            pokemon.takeDamage(damageTaken);
+            expect(pokemon.hitPoints).toEqual(hitPoints-damageTaken);
+        });
+        test("takes a number and reduces hit points until 0", () => {
+            const name = "Meowth";
+            const hitPoints = 300;
+            const attackDamage = 20;
+            const damageTaken = 350;
+            const pokemon = new Pokemon(name, hitPoints, attackDamage);
+            pokemon.takeDamage(damageTaken);
+            expect(pokemon.hitPoints).toEqual(0);
+        });
+    });
 });
